@@ -41,19 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String? _error;
   bool _passwordVisible = false;
 
-  // Test server connection
-  Future<void> _testConnection() async {
-    try {
-      final response = await http.get(
-        Uri.parse('https://ecowaste-1013759214686.us-central1.run.app/api/test'),
-        headers: {"Content-Type": "application/json"},
-      ).timeout(Duration(seconds: 5));
-      
-      print("Server test response: ${response.statusCode} - ${response.body}");
-    } catch (e) {
-      print("Server connection test failed: $e");
-    }
-  }
+  
 
   // Save session to SharedPreferences
   Future<void> _saveSession(int id, String email, String name) async {
@@ -319,15 +307,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     const SizedBox(height: 12),
                     
-                    // Debug button (remove in production)
-                    if (true) // Set to false in production
-                      TextButton(
-                        onPressed: _testConnection,
-                        child: Text(
-                          'Test Server Connection',
-                          style: TextStyle(color: Colors.grey[600], fontSize: 12),
-                        ),
-                      ),
+                    
                     
                     const SizedBox(height: 4),
                     GestureDetector(
